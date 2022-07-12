@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Paket Pembelajaran SMPT GRAHA QUR'AN</h1>
+                    <h1>Detail Paket Kelas <strong><?= $data['paket']->name_paket ?></strong></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Paket Pembelajaran</li>
+                        <li class="breadcrumb-item active">Detail Paket Kelas</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <?php
             }
             ?>
-            <button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-success mt-3"><i class="fas fa-plus-circle"></i> Add Paket Kelas</button>
+            <button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-success mt-3"><i class="fas fa-plus-circle"></i> Add Detail Paket Kelas</button>
 
         </div><!-- /.container-fluid -->
     </section>
@@ -45,25 +45,25 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No.</th>
-                                        <th class="text-center">Nama Paket</th>
-                                        <th class="text-center">Create At</th>
+                                        <th class="text-center">Nama Item</th>
+                                        <th class="text-center">Biaya</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($paket as $key => $value) {
+                                    foreach ($data['detail'] as $key => $value) {
                                     ?>
                                         <tr>
                                             <td class="text-center"><?= $no++ ?></td>
-                                            <td class="text-center"><a href="<?= base_url('cDataPaket/detailpaket/' . $value->id_paket) ?>"><strong><?= $value->name_paket ?></strong></a></td>
-                                            <td class="text-center"><?= $value->create_at ?></td>
+                                            <td class="text-center"><strong><?= $value->jenis_pembayaran ?></strong></a></td>
+                                            <td class="text-center">Rp. <?= number_format($value->price)  ?></td>
                                             <td class="text-center">
-                                                <button type="button" data-toggle="modal" data-target="#edit<?= $value->id_paket ?>" class="btn btn-app">
+                                                <button type="button" data-toggle="modal" data-target="#edit<?= $value->id_detailpaket ?>" class="btn btn-app">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
-                                                <a href="<?= base_url('cDataPaket/delete/' . $value->id_paket) ?>" class="btn btn-app">
+                                                <a href="<?= base_url('cDataPaket/delete/' . $value->id_detailpaket) ?>" class="btn btn-app">
                                                     <i class="fas fa-trash"></i> Delete
                                                 </a>
                                             </td>
@@ -76,8 +76,8 @@
                                 <tfoot>
                                     <tr>
                                         <th class="text-center">No.</th>
-                                        <th class="text-center">Nama Paket</th>
-                                        <th class="text-center">Create At</th>
+                                        <th class="text-center">Nama Item</th>
+                                        <th class="text-center">Biaya</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>
@@ -97,18 +97,22 @@
 </div>
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
-        <form action="<?= base_url('cDataPaket/addpaket') ?>" method="POST">
+        <form action="<?= base_url('cDataPaket/adddetailpaket/' . $data['paket']->id_paket) ?>" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Data Paket Pembelajaran</h4>
+                    <h4 class="modal-title">Add Data Detail Paket Kelas</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nama Paket</label>
-                        <input type="text" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Nama Paket Pembelajaran" required>
+                        <label for="exampleInputEmail1">Nama Item</label>
+                        <input type="text" name="item" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Nama Item Pembayaran" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Biaya</label>
+                        <input type="number" name="harga" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Biaya Item" required>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
