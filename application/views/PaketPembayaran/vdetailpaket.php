@@ -128,11 +128,11 @@
 <!-- /.modal -->
 
 <?php
-foreach ($paket as $key => $value) {
+foreach ($data['detail'] as $key => $value) {
 ?>
-    <div class="modal fade" id="edit<?= $value->id_paket ?>">
+    <div class="modal fade" id="edit<?= $value->id_detailpaket ?>">
         <div class="modal-dialog">
-            <form action="<?= base_url('cDataPaket/update/' . $value->id_paket) ?>" method="POST">
+            <form action="<?= base_url('cDataPaket/updatedetailpaket/' . $value->id_detailpaket . '/' . $value->id_paket) ?>" method="POST">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Update Data Paket Pembelajaran</h4>
@@ -142,8 +142,12 @@ foreach ($paket as $key => $value) {
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nama Paket</label>
-                            <input type="text" name="nama" value="<?= $value->name_paket ?>" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Nama Paket Pembelajaran" required>
+                            <label for="exampleInputEmail1">Nama Item</label>
+                            <input type="text" name="item" value="<?= $value->jenis_pembayaran ?>" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Nama Item Pembayaran" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Biaya</label>
+                            <input type="number" name="harga" value="<?= $value->price ?>" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Biaya Item" required>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">

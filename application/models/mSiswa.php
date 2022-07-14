@@ -30,6 +30,19 @@ class mSiswa extends CI_Model
         $this->db->where('nis', $id);
         $this->db->delete('tbl_siswa');
     }
+
+    //mengambil data paket
+    public function paket($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_detailpaket');
+        $this->db->where('id_paket', $id);
+        return $this->db->get()->result();
+    }
+    public function insert_pembayaran($data)
+    {
+        $this->db->insert('tbl_pembayaransiswa', $data);
+    }
 }
 
 /* End of file mSiswa.php */

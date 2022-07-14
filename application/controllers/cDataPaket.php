@@ -70,6 +70,16 @@ class cDataPaket extends CI_Controller
         $this->session->set_flashdata('success', 'Data Detail Kelas Berhasil Ditambahkan!');
         redirect('cDataPaket/detailpaket/' . $data['id_paket']);
     }
+    public function updatedetailpaket($id_detail, $id_paket)
+    {
+        $data = array(
+            'jenis_pembayaran' => $this->input->post('item'),
+            'price' => $this->input->post('harga')
+        );
+        $this->mPaket->updatedetailpaket($id_detail, $data);
+        $this->session->set_flashdata('success', 'Data Detail Kelas Berhasil Diperbaharui!');
+        redirect('cDataPaket/detailpaket/' . $id_paket);
+    }
 }
 
 /* End of file cDataPaket.php */

@@ -31,6 +31,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?= base_url('cDataPaket') ?>" class="nav-link   <?php if ($this->uri->segment(1) == 'cDataPaket') {
+                                                                                    echo 'active';
+                                                                                }  ?>">
+                        <i class="nav-icon fas fa-solid fa-book-open"></i>
+                        <p>Data Paket Kelas</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="<?= base_url('cDataSiswa') ?>" class="nav-link   <?php if ($this->uri->segment(1) == 'cDataSiswa') {
                                                                                     echo 'active';
                                                                                 }  ?>">
@@ -38,14 +46,7 @@
                         <p>Data Siswa</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('cDataPaket') ?>" class="nav-link   <?php if ($this->uri->segment(1) == 'cDataPaket') {
-                                                                                    echo 'active';
-                                                                                }  ?>">
-                        <i class="nav-icon fas fa-solid fa-book-open"></i>
-                        <p>Data Paket</p>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="<?= base_url('cLaporan') ?>" class="nav-link   <?php if ($this->uri->segment(1) == 'cLaporan') {
                                                                                 echo 'active';

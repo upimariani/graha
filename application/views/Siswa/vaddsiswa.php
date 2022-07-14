@@ -74,7 +74,23 @@
                                     <textarea class="form-control" name="alamat" placeholder="Masukkan Alamat Siswa / Siswi"></textarea>
                                     <?= form_error('alamat', '<small class="text-danger">', '</small>') ?>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Paket Kelas</label>
+                                    <select class="form-control" name="paket">
+                                        <option value="">---Pilih Paket Kelas---</option>
+                                        <?php
+                                        foreach ($paket as $key => $value) {
+                                        ?>
+                                            <option value="<?= $value->id_paket ?>"><?= $value->name_paket ?></option>
+                                        <?php
+                                        }
+                                        ?>
+
+                                    </select>
+                                    <?= form_error('jk', '<small class="text-danger">', '</small>') ?>
+                                </div>
                             </div>
+
                             <!-- /.card-body -->
 
                             <div class="card-footer">

@@ -8,6 +8,7 @@ class cDataSiswa extends CI_Controller
     {
         parent::__construct();
         $this->load->model('mSiswa');
+        $this->load->model('mPaket');
     }
 
     public function index()
@@ -31,15 +32,18 @@ class cDataSiswa extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat Siswa', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-
+            $data = array(
+                'paket' => $this->mPaket->select()
+            );
             $this->load->view('Layout/head');
             $this->load->view('Layout/navbar');
             $this->load->view('Layout/aside');
-            $this->load->view('Siswa/vaddsiswa');
+            $this->load->view('Siswa/vaddsiswa', $data);
             $this->load->view('Layout/footer');
         } else {
             $data = array(
                 'nis' => $this->input->post('nis'),
+                'id_paket' => $this->input->post('paket'),
                 'name' => $this->input->post('nama'),
                 'gender' => $this->input->post('jk'),
                 'address' => $this->input->post('alamat'),
@@ -47,6 +51,18 @@ class cDataSiswa extends CI_Controller
                 'tanggal_lahir' => $this->input->post('tgl')
             );
             $this->mSiswa->addsiswa($data);
+
+            //data paket kelas / pembayaran siswa
+            $paket = $this->input->post('paket');
+            $data_paket = $this->mSiswa->paket($paket);
+            foreach ($data_paket as $key => $value) {
+                $pembayaran_siswa = array(
+                    'nis' => $this->input->post('nis'),
+                    'id_detailpaket' => $value->id_detailpaket,
+                    'tagihan' => $value->price
+                );
+                $this->mSiswa->insert_pembayaran($pembayaran_siswa);
+            }
             $this->session->set_flashdata('success', 'Data Siswa Berhasil Disimpan!');
             redirect('cDataSiswa');
         }

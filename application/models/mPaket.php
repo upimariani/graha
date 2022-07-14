@@ -35,6 +35,11 @@ class mPaket extends CI_Model
     {
         $this->db->insert('tbl_detailpaket', $data);
     }
+    public function updatedetailpaket($id, $data)
+    {
+        $this->db->where('id_detailpaket', $id);
+        $this->db->update('tbl_detailpaket', $data);
+    }
 }
 
 /* End of file mPaket.php */

@@ -61,14 +61,14 @@
                                     ?>
                                         <tr>
                                             <td class="text-center"><?= $no++ ?>.</td>
-                                            <td><strong><?= $value->nis ?></strong></td>
-                                            <td><?= $value->name ?></td>
-                                            <td><?php if ($value->gender == '1') {
-                                                    echo 'Perempuan';
-                                                } else {
-                                                    echo 'Laki - Laki';
-                                                }
-                                                ?></td>
+                                            <td class="text-center"><a href="<?= base_url('cPembayaran/detail/' . $value->nis) ?>"><strong><?= $value->nis ?></strong></a></td>
+                                            <td class="text-center"><?= $value->name ?></td>
+                                            <td class="text-center"><?php if ($value->gender == '1') {
+                                                                        echo 'Perempuan';
+                                                                    } else {
+                                                                        echo 'Laki - Laki';
+                                                                    }
+                                                                    ?></td>
                                             <td><?= $value->tempat_lahir ?>, <?= $value->tanggal_lahir ?></td>
                                             <td class="text-center">
                                                 <a href="<?= base_url('cDataSiswa/updatesiswa/' . $value->nis) ?>" class="btn btn-app">
